@@ -88,7 +88,7 @@ class Velociraptor(Responder):
             state=0
 
             # Check to see if the flow has completed        
-            while (state != 2):
+            while (state != "FINISHED"):
     
               followup_request = api_pb2.VQLCollectorArgs(
                 max_wait=10,
@@ -106,7 +106,7 @@ class Velociraptor(Responder):
               global artifact_results
               artifact_results = flow_results[0]['artifacts_with_results']
               self.report({'message': state })
-              if state == 2:
+              if state == "FINISHED":
                 time.sleep(5)
                 break
 
